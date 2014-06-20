@@ -1,6 +1,10 @@
 EDITOR='subl .'
 PROJECTS_DIRECTORY='rails_projects'
 
+ucp() {
+  grep -q PROJECT ~/.bash_profile  && sed -i '.backup' "s!^\([^#]*PROJECT=\)\(.*\)!\1$1 #\2!" ~/.bash_profile
+  command source ~/.bash_profile \;
+}
 wrk() {
   if [ -z "$PROJECT" ]; then
     printf '\e[0;33mNo project directory set. Run ucp [directory argument].\nRedirected to the projects directory \e[0m \n'
